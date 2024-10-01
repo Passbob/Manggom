@@ -5,9 +5,7 @@ import com.manggom.model.dto.UserDTO;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 import static com.manggom.common.JDBCTemplate.close;
 
@@ -80,5 +78,30 @@ public class UserDAO {
 
         return userList;
     }
+    public List<Map<String, String>> comparisonUserInfo(Connection con) {
+        Statement stmt = null;
+        ResultSet rset = null;
 
+        List<Map<String, String>> comparisonList = null;
+
+        String query = prop.getProperty("selectUserNameAndPhone");
+
+        try {
+            stmt = con.createStatement();
+            rset = stmt.executeQuery(query);
+
+            comparisonList = new ArrayList<>();
+
+            while (rset.next()) {
+                Map<String , String> user = new HashMap<>();
+                user.put(rset.getString("USER_NAME"), rset.getString("USER_PHONE"));
+
+                comparisonList.add(user);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    return comparisonList;
+    }
 }

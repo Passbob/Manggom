@@ -15,7 +15,7 @@ public class Application {
 //        se.selectAllUser();
 
         for(int i = 0; true; i++){
-            start.inputUserInfo();
+            start.start();
             if(exit.getExit() == 1){
                 break;
             }
