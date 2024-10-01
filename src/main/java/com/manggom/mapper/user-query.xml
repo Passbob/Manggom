@@ -8,7 +8,18 @@
     </entry>
     <entry key="selectAllUser">
         SELECT *
+         FROM USER_INFO;
+    </entry>
+    <entry key="selectUserName">
+        SELECT *
          FROM USER_INFO
+        WHERE USER_NAME = ?;
+    </entry>
+    <entry key="selectUserNameAndPhone">
+        SELECT
+            USER_NAME,
+            USER_PHONE
+         FROM USER_INFO ;
     </entry>
 
 </properties>
