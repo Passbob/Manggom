@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment/>
+    <entry key="insertUser">
+        INSERT INTO USER_INFO VALUES
+        (
+        ?,
+        ?,
+        ?,
+        ?,
+        ?
+        );
+    </entry>
+    <entry key="selectAllUser">
+        SELECT *
+         FROM USER_INFO
+    </entry>
+
+</properties>

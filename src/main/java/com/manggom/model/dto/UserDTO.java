@@ -8,9 +8,7 @@ public class UserDTO {
     private String customerEmail;
     private String customerAddr;
 
-    public UserDTO() {
-
-    }
+    public UserDTO() {}
 
     public UserDTO(int userNo, String userName, String userPhone, String customerEmail, String customerAddr) {
         this.userNo = userNo;
@@ -20,16 +18,14 @@ public class UserDTO {
         this.customerAddr = customerAddr;
     }
 
-
     @Override
     public String toString() {
-        return "UserDTO{" +
-                "userNo=" + userNo +
-                ", userName='" + userName + '\'' +
-                ", userPhone='" + userPhone + '\'' +
-                ", customerEmail='" + customerEmail + '\'' +
-                ", customerAddr='" + customerAddr + '\'' +
-                '}';
+        return userNo + " . " +
+                "고객이름 = " + userName +
+                ", 전화번호 = " + userPhone +
+                ", 이메일 = " + customerEmail +
+                ", 주소 = " + customerAddr
+                ;
     }
 
     public int getUserNo() {
