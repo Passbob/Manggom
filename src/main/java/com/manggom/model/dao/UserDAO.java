@@ -30,7 +30,7 @@ public class UserDAO {
 
         try {
             pstmt = con.prepareStatement(query);
-            pstmt.setInt(1,user.getUserNo());
+            pstmt.setInt(1,0);
             pstmt.setString(2,user.getUserName());
             pstmt.setString(3,user.getUserPhone());
             pstmt.setString(4,user.getCustomerEmail());
@@ -78,9 +78,10 @@ public class UserDAO {
 
         return userList;
     }
-    public List<Map<String, String>> comparisonUserInfo(Connection con) {
+    public UserDTO comparisonUserInfo(Connection con, String userName, String userPhone) {
         Statement stmt = null;
         ResultSet rset = null;
+        UserDTO user = new UserDTO();
 
         List<Map<String, String>> comparisonList = null;
 
@@ -90,18 +91,68 @@ public class UserDAO {
             stmt = con.createStatement();
             rset = stmt.executeQuery(query);
 
+            Map<String , String> comparison = new HashMap<>();
+            comparison.put(userName, userPhone);
             comparisonList = new ArrayList<>();
+            System.out.println("comparison = " + comparison);
 
             while (rset.next()) {
-                Map<String , String> user = new HashMap<>();
-                user.put(rset.getString("USER_NAME"), rset.getString("USER_PHONE"));
+                Map<String , String> userMap = new HashMap<>();
+                userMap.put(rset.getString("USER_NAME"), rset.getString("USER_PHONE"));
 
-                comparisonList.add(user);
+                comparisonList.add(userMap);
+            }
+            for(Map<String, String> map : comparisonList){
+                System.out.println("map = " + map);
+                if(map.equals(comparison)){
+                    user = selectUserName(con, userName);
+                }else{
+                    user = null;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            close(stmt);
+            close(rset);
+        }
+
+        return user;
+    }
+
+    public UserDTO selectUserName(Connection con, String userName) {
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+
+        String query = prop.getProperty("selectUserName");
+
+        UserDTO user = null;
+        try {
+            pstmt = con.prepareStatement(query);
+            pstmt.setString(1,userName);
+
+            rset = pstmt.executeQuery();
+
+
+            if(rset.next()){
+                user = new UserDTO(rset.getInt("USER_NO"),
+                        rset.getString("USER_NAME"),
+                        rset.getString("USER_PHONE"),
+                        rset.getString("CUSTOMER_EMAIL"),
+                        rset.getString("CUSTOMER_ADDR"));
             }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }finally {
+            close(pstmt);
+            close(rset);
         }
-    return comparisonList;
+
+        return user;
     }
+
 }
+
+
+
