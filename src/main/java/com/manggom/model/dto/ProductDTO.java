@@ -18,12 +18,10 @@ public class ProductDTO {
 
     @Override
     public String toString() {
-        return "ProductDTO{" +
-                "productCode='" + productCode + '\'' +
-                ", productName='" + productName + '\'' +
-                ", productCount=" + productCount +
-                ", productPrice=" + productPrice +
-                '}';
+        return " " + productCode +
+                " . 상품명 = " + productName +
+                ", 남은 수량 = " + productCount +
+                ", 가격 = " + productPrice;
     }
 
     public String getProductCode() {

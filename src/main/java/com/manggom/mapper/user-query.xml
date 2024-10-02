@@ -21,5 +21,9 @@
             USER_PHONE
          FROM USER_INFO ;
     </entry>
+    <entry key="selectLastUserNo">
+        SELECT MAX(USER_NO)
+        FROM USER_INFO
+    </entry>
 
 </properties>

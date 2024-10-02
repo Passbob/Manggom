@@ -2,4 +2,15 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <comment/>
+    <entry key="selectAllProduct">
+        SELECT *
+        FROM PRODUCT;
+    </entry>
+    <entry key="updateProductCount">
+        UPDATE PRODUCT
+        SET PRODUCT_COUNT = ?
+        WHERE PRODUCT_CODE = ?;
+    </entry>
+
+
 </properties>

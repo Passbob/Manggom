@@ -30,7 +30,7 @@ public class UserDAO {
 
         try {
             pstmt = con.prepareStatement(query);
-            pstmt.setInt(1,0);
+            pstmt.setInt(1,user.getUserNo());
             pstmt.setString(2,user.getUserName());
             pstmt.setString(3,user.getUserPhone());
             pstmt.setString(4,user.getCustomerEmail());
@@ -94,7 +94,6 @@ public class UserDAO {
             Map<String , String> comparison = new HashMap<>();
             comparison.put(userName, userPhone);
             comparisonList = new ArrayList<>();
-            System.out.println("comparison = " + comparison);
 
             while (rset.next()) {
                 Map<String , String> userMap = new HashMap<>();
@@ -103,7 +102,6 @@ public class UserDAO {
                 comparisonList.add(userMap);
             }
             for(Map<String, String> map : comparisonList){
-                System.out.println("map = " + map);
                 if(map.equals(comparison)){
                     user = selectUserName(con, userName);
                 }else{
@@ -150,6 +148,32 @@ public class UserDAO {
         }
 
         return user;
+    }
+
+    public int selectLastUserNo(Connection con) {
+
+        Statement stmt = null;
+        ResultSet rset = null;
+
+        int maxUserNo = 0;
+
+        String query = prop.getProperty("selectLastUserNo");
+
+        try {
+            stmt = con.createStatement();
+            rset = stmt.executeQuery(query);
+            if(rset.next()){
+                maxUserNo = rset.getInt("MAX(USER_NO)");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            close(stmt);
+            close(rset);
+        }
+
+        return maxUserNo;
     }
 
 }
