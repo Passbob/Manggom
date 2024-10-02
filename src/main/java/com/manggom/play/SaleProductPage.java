@@ -50,15 +50,17 @@ public class SaleProductPage {
         System.out.println("======================================");
         System.out.println("원하시는 번호를 입력해주세요. ");
         int choiceProduct = sc.nextInt();
-        System.out.println("구매하실 수량을 선택해주세요. ");
-        int choiceProductCount = sc.nextInt();
-        System.out.println();
-        int choiceProductPrice = price[choiceProduct-1];
-        int totalPrice = choiceProductPrice*choiceProductCount;
-        int restCount = count[choiceProduct-1];
         if(choiceProduct == 41630989){
-
+            ManagerPage manager = new ManagerPage();
+            manager.managerPassword();
         }else {
+            System.out.println("구매하실 수량을 선택해주세요. ");
+            int choiceProductCount = sc.nextInt();
+            System.out.println();
+            int choiceProductPrice = price[choiceProduct-1];
+            int totalPrice = choiceProductPrice*choiceProductCount;
+            int restCount = count[choiceProduct-1];
+
 
             if (choiceProductCount > 5) {
                 System.out.println("한 번에 5개까지만 구매 가능합니다. ");

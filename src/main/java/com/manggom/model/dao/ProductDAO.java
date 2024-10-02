@@ -6,9 +6,7 @@ import com.manggom.model.dto.UserDTO;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 import static com.manggom.common.JDBCTemplate.close;
 import static com.manggom.common.JDBCTemplate.getConnection;
@@ -40,7 +38,7 @@ public class ProductDAO {
             productList = new ArrayList<>();
 
             while(rset.next()){
-                ProductDTO product = new ProductDTO(rset.getString("PRODUCT_CODE"),
+                ProductDTO product = new ProductDTO(rset.getInt("PRODUCT_CODE"),
                         rset.getString("PRODUCT_NAME"),
                         rset.getInt("PRODUCT_COUNT"),
                         rset.getInt("PRODUCT_PRICE"));
@@ -76,5 +74,87 @@ public class ProductDAO {
 
         return result;
     }
+
+
+    public ArrayList<Map<String ,Integer>> selectRestCount(Connection con) {
+
+        Statement stmt = null;
+        ResultSet rset = null;
+
+        ArrayList<Map<String ,Integer>> productList = null;
+
+        String query = prop.getProperty("selectRestCount");
+
+        try {
+            stmt = con.createStatement();
+            rset = stmt.executeQuery(query);
+
+            productList = new ArrayList<>();
+
+            while(rset.next()){
+                Map<String,Integer> product = new HashMap<>();
+                product.put(rset.getNString("PRODUCT_NAME"), rset.getInt("PRODUCT_COUNT"));
+
+                productList.add(product);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            close(stmt);
+            close(rset);
+        }
+
+
+        return productList;
+    }
+
+    public int deleteProduct(Connection con, int num){
+        int result = 0;
+        PreparedStatement pstmt = null;
+
+        String query = prop.getProperty("deleteProductInfo");
+
+        try {
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, num);
+
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            close(pstmt);
+        }
+
+        return result;
+    }
+
+    public int inputProduct(Connection con, ProductDTO user){
+
+        PreparedStatement pstmt = null;
+        int result = 0;
+
+        String query = prop.getProperty("insertProduct");
+
+        try {
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1,user.getProductCode());
+            pstmt.setString(2,user.getProductName());
+            pstmt.setInt(3,user.getProductCount());
+            pstmt.setInt(4,user.getProductPrice());
+
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            close(pstmt);
+        }
+
+        return result;
+    }
+
+
+
+
 
 }

@@ -11,6 +11,19 @@
         SET PRODUCT_COUNT = ?
         WHERE PRODUCT_CODE = ?;
     </entry>
-
-
+    <entry key="selectRestCount">
+        SELECT
+            PRODUCT_NAME,
+            PRODUCT_COUNT
+        FROM PRODUCT;
+    </entry>
+    <entry key="deleteProductInfo">
+        DELETE
+        FROM  PRODUCT
+        WHERE PRODUCT_CODE = ?;
+    </entry>
+    <entry key="insertProduct">
+        INSERT INTO PRODUCT VALUES
+        ( ?, ?, ?, ?);
+    </entry>
 </properties>

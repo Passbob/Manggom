@@ -15,6 +15,18 @@
          FROM USER_INFO
         WHERE USER_NAME = ?;
     </entry>
+    <entry key="selectUserNo">
+        SELECT *
+         FROM USER_INFO
+        WHERE USER_NO = ?;
+    </entry>
+
+    <entry key="selectUserPhone">
+        SELECT *
+        FROM USER_INFO
+        WHERE USER_PHONE = ?;
+    </entry>
+
     <entry key="selectUserNameAndPhone">
         SELECT
             USER_NAME,
@@ -24,6 +36,13 @@
     <entry key="selectLastUserNo">
         SELECT MAX(USER_NO)
         FROM USER_INFO
+    </entry>
+
+    <entry key="deleteUserInfo">
+        DELETE
+        FROM USER_INFO
+        WHERE USER_NO = ?;
+
     </entry>
 
 </properties>

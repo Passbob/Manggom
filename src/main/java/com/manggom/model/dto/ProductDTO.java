@@ -2,14 +2,14 @@ package com.manggom.model.dto;
 
 public class ProductDTO {
 
-    private String productCode;
+    private int productCode;
     private String productName;
     private int productCount;
     private int productPrice;
 
     public ProductDTO(){}
 
-    public ProductDTO(String productCode, String productName, int productCount, int productPrice) {
+    public ProductDTO(int productCode, String productName, int productCount, int productPrice) {
         this.productCode = productCode;
         this.productName = productName;
         this.productCount = productCount;
@@ -24,11 +24,11 @@ public class ProductDTO {
                 ", 가격 = " + productPrice;
     }
 
-    public String getProductCode() {
+    public int getProductCode() {
         return productCode;
     }
 
-    public void setProductCode(String productCode) {
+    public void setProductCode(int productCode) {
         this.productCode = productCode;
     }
 

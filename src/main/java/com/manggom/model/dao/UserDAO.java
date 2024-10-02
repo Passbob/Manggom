@@ -176,6 +176,92 @@ public class UserDAO {
         return maxUserNo;
     }
 
+    public UserDTO selectUserPhone(Connection con, String Phone) {
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+
+        String query = prop.getProperty("selectUserPhone");
+
+        UserDTO user = null;
+        try {
+            pstmt = con.prepareStatement(query);
+            pstmt.setString(1, Phone);
+
+            rset = pstmt.executeQuery();
+
+
+            if(rset.next()){
+                user = new UserDTO(rset.getInt("USER_NO"),
+                        rset.getString("USER_NAME"),
+                        rset.getString("USER_PHONE"),
+                        rset.getString("CUSTOMER_EMAIL"),
+                        rset.getString("CUSTOMER_ADDR"));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            close(pstmt);
+            close(rset);
+        }
+
+        return user;
+    }
+
+
+    public UserDTO selectUserNo(Connection con, int num) {
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+
+        String query = prop.getProperty("selectUserNo");
+
+        UserDTO user = null;
+        try {
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, num);
+
+            rset = pstmt.executeQuery();
+
+
+            if(rset.next()){
+                user = new UserDTO(rset.getInt("USER_NO"),
+                        rset.getString("USER_NAME"),
+                        rset.getString("USER_PHONE"),
+                        rset.getString("CUSTOMER_EMAIL"),
+                        rset.getString("CUSTOMER_ADDR"));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            close(pstmt);
+            close(rset);
+        }
+
+        return user;
+    }
+
+    public int deleteUserInfo(Connection con, int num){
+
+        PreparedStatement pstmt = null;
+        int result = 0;
+
+        String query = prop.getProperty("deleteUserInfo");
+
+        try {
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, num);
+
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            close(pstmt);
+        }
+
+        return result;
+    }
+
 }
 
 
