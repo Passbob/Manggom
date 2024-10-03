@@ -5,6 +5,7 @@ import com.manggom.model.dao.ProductDAO;
 import com.manggom.model.dao.SaleInfoDAO;
 import com.manggom.model.dao.UserDAO;
 import com.manggom.model.dto.ProductDTO;
+import com.manggom.model.dto.SaleInfoDTO;
 import com.manggom.model.dto.UserDTO;
 
 import java.sql.Connection;
@@ -165,14 +166,31 @@ public class ManagerPage {
 
     public void saleInfoControl(){
         Connection con = getConnection();
-        SaleInfoDAO sale = new SaleInfoDAO();
+        SaleInfoDAO resistDAO = new SaleInfoDAO();
         System.out.println("===========판매현황 조회 창===========");
         System.out.println(" 1. 모든 거래 검색  2. 유저별 총 거래");
         System.out.println(" 3. 상품별 총 거래");
         System.out.println(" 4. 거래 삭제  5. 거래 총합");
-
+        int choice = sc.nextInt();
+        if(choice == 1) {
 //        모든 거래 검색
+            ArrayList<SaleInfoDTO> select = new ArrayList<>();
+            select = resistDAO.selectAllSaleInfo(con);
+            for (SaleInfoDTO sale : select) {
+                System.out.println(sale);
+            }
+        } else if (choice == 2) {
 //        유저별 총 거래
+
+            System.out.println("조회할 유저의 번호를 입력해주세요. ");
+            String userNo=sc.nextLine();
+            ArrayList<SaleInfoDTO> select = new ArrayList<>();
+            select = resistDAO.selectUserSaleInfo(con, userNo);
+            for (SaleInfoDTO sale : select) {
+                System.out.println(sale);
+            }
+
+        }
 //        상품별 총 거래
 //        거래 총합
 //        거래 제거

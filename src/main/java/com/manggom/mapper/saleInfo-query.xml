@@ -6,4 +6,8 @@
         INSERT INTO SALE_INFO VALUES
         ( ?, ?, ?, ?, ?, ? );
     </entry>
+    <entry key="selectAllSaleInfo">
+        SELECT *
+        FROM SALE_INFO;
+    </entry>
 </properties>
