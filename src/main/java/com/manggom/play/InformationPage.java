@@ -56,6 +56,9 @@ public class InformationPage {
         String userPhone = sc.nextLine();
         System.out.print("이메일을 입력해주세요. : ");
         String userEmail = sc.nextLine();
+        if(userEmail.equals("")){
+            userEmail = null;
+        }
         System.out.print("주소를 입력해주세요. : ");
         String userAddr = sc.nextLine();
         if (userName != "" && userPhone != "" && userAddr != "") {

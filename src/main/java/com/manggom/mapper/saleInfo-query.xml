@@ -10,4 +10,29 @@
         SELECT *
         FROM SALE_INFO;
     </entry>
+    <entry key="selectUserSaleInfo">
+        SELECT *
+        FROM SALE_INFO
+        WHERE USER_NO = ?;
+    </entry>
+    <entry key="selectProductSaleInfo">
+        SELECT *
+        FROM SALE_INFO
+        WHERE PRODUCT_CODE = ?;
+    </entry>
+
+    <entry key="selectTotalSaleByProduct">
+        SELECT
+        IFNULL(PRODUCT_NAME, NULL),
+        IFNULL(SUM(SALE_COUNT), NULL),
+        IFNULL(SUM(SALE_PRICE), NULL)
+        FROM SALE_INFO
+        JOIN PRODUCT USING (PRODUCT_CODE)
+        GROUP BY PRODUCT_CODE;
+    </entry>
+
+    <entry key="deleteSaleInfo">
+        DELETE FROM SALE_INFO
+        WHERE SALE_NO = ?;
+    </entry>
 </properties>

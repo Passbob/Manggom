@@ -7,4 +7,13 @@
          MANAGER_CODE
          FROM MANAGER
     </entry>
+    <entry key="inputManager">
+        INSERT INTO USER_INFO VALUES
+        (?, ?);
+    </entry>
+    <entry key="updateManagerCode">
+        UPDATE MANAGER
+        SET MANAGER_CODE = ?
+        WHERE MANAGER_NO = ?;
+    </entry>
 </properties>

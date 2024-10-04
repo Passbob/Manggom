@@ -54,7 +54,7 @@ public class SaleProductPage {
             ManagerPage manager = new ManagerPage();
             manager.managerPassword();
         }else {
-            System.out.println("구매하실 수량을 선택해주세요. ");
+            System.out.println("구매하실 수량을 선택해주세요. !!최대 5개!! ");
             int choiceProductCount = sc.nextInt();
             System.out.println();
             int choiceProductPrice = price[choiceProduct-1];

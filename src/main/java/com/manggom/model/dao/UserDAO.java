@@ -262,6 +262,30 @@ public class UserDAO {
         return result;
     }
 
+    public int updateUserInfo(Connection con, UserDTO user){
+        int result = 0;
+        PreparedStatement pstmt = null;
+
+        String query = prop.getProperty("updateUserInfo");
+
+        try {
+            pstmt = con.prepareStatement(query);
+            pstmt.setString(1, user.getUserName());
+            pstmt.setString(2, user.getUserPhone());
+            pstmt.setString(3, user.getCustomerEmail());
+            pstmt.setString(4, user.getCustomerAddr());
+            pstmt.setInt(5, user.getUserNo());
+
+            result = pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            close(pstmt);
+        }
+
+        return result;
+    }
 }
 
 

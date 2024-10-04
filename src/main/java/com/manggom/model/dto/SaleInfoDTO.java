@@ -19,14 +19,12 @@ public class SaleInfoDTO {
 
     @Override
     public String toString() {
-        return "SaleInfoDTO{" +
-                "saleNo=" + saleNo +
-                ", userNo=" + userNo +
-                ", saleDate='" + saleDate + '\'' +
-                ", productCode='" + productCode + '\'' +
-                ", saleCount=" + saleCount +
-                ", salePrice=" + salePrice +
-                '}';
+        return "판매번호 = " + saleNo +
+                ", 회원번호 = " + userNo +
+                ", 판매일자 = " + saleDate +
+                ", 물품코드 = " + productCode +
+                ", 판매량 = " + saleCount +
+                ", 판매액 = " + salePrice;
     }
 
     public int getSaleNo() {

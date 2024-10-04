@@ -1,11 +1,10 @@
 package com.manggom.model.dao;
 
+import com.manggom.model.dto.ManagerDTO;
+
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -52,6 +51,49 @@ public class ManagerDAO {
             close(rset);
         }
         return isPass;
+    }
+
+    public int inputManager(Connection con, ManagerDTO newManager){
+        int result = 0;
+        PreparedStatement pstmt = null;
+
+        String query = prop.getProperty("inputManager");
+
+        try {
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, newManager.getManagerNo());
+            pstmt.setString(2, newManager.getManagerCode());
+
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            close(pstmt);
+        }
+
+        return result;
+    }
+
+    public int updateManagerCode(Connection con, int managerNo, String managerCode){
+        int result = 0;
+        PreparedStatement pstmt = null;
+
+        String query = prop.getProperty("updateManagerCode");
+
+        try {
+            pstmt = con.prepareStatement(query);
+            pstmt.setString(1, managerCode);
+            pstmt.setInt(2, managerNo);
+
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            close(pstmt);
+        }
+
+
+        return result;
     }
 
 }
