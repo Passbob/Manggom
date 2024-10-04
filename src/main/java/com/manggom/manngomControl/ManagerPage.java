@@ -1,4 +1,4 @@
-package com.manggom.play;
+package com.manggom.manngomControl;
 
 import com.manggom.model.dao.ManagerDAO;
 import com.manggom.model.dao.ProductDAO;

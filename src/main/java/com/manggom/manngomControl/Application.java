@@ -1,6 +1,4 @@
-package com.manggom.run;
-
-import com.manggom.play.SaleProductPage;
+package com.manggom.manngomControl;
 
 public class Application {
 
