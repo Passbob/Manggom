@@ -29,6 +29,6 @@ ______
 _____  
 ## 데이터 모델링
 
-
+![모델링](./images/manggomModeling.png)
 
 ______
