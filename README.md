@@ -29,6 +29,6 @@ ______
 _____  
 ## 데이터 모델링
 
-![image](https://github.com/user-attachments/assets/a839651f-65c5-4ed7-8e4c-13f9dd1bf19d)
+
 
 ______
