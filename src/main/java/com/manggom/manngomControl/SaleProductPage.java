@@ -13,15 +13,20 @@ public class SaleProductPage {
     Scanner sc = new Scanner(System.in);
     ProductDAO resistDAO = new ProductDAO();
 
-    public void startPurchase() {
 
+    public void startPurchase() {
+        Connection con = getConnection();
+        ArrayList<ProductDTO> productList = new ArrayList<>();
+        productList = resistDAO.selectAllProduct(con);
+        int exitNum = productList.size()+1;
         SaleProductPage sale = new SaleProductPage();
 //        페이지 시작
 
         for (int i = 0; true; i++) {
             int choice;
                 choice = sale.productSale();
-                if(choice == 9){
+                if(choice == exitNum){
+                    System.out.println("판매페이지를 종료합니다.");
                     break;
                 }
         }
@@ -32,6 +37,7 @@ public class SaleProductPage {
         InformationPage info = new InformationPage();
         ArrayList<ProductDTO> productList = new ArrayList<>();
         productList = resistDAO.selectAllProduct(con);
+        int exitNum = productList.size()+1;
         int[] count = new int[productList.size()];
         int[] price = new int[productList.size()];
         System.out.println("==============망곰이 굿즈===============");
@@ -46,14 +52,14 @@ public class SaleProductPage {
             }
             System.out.println(productList.get(i)+ "  " + condition);
         }
-        System.out.println(" 9. 나가기 ");
+        System.out.println(" "+exitNum+". 나가기 ");
         System.out.println("======================================");
         System.out.println("원하시는 번호를 입력해주세요. ");
         int choiceProduct = sc.nextInt();
         if(choiceProduct == 41630989){
             ManagerPage manager = new ManagerPage();
             manager.managerPassword();
-        }else {
+        }else if(choiceProduct < exitNum && choiceProduct >= 1){
             System.out.println("구매하실 수량을 선택해주세요. !!최대 5개!! ");
             int choiceProductCount = sc.nextInt();
             System.out.println();
@@ -66,10 +72,14 @@ public class SaleProductPage {
                 System.out.println("한 번에 5개까지만 구매 가능합니다. ");
             } else if (restCount - choiceProductCount >= 0) {
                 System.out.println("구매하신 총 가격은 " + (totalPrice) + "원 입니다. ");
-                choiceProduct = info.startInformation(choiceProduct, choiceProductCount, totalPrice, restCount);
+                choiceProduct = info.startInformation(choiceProduct, choiceProductCount, totalPrice, restCount, exitNum);
             } else {
                 System.out.println("요청하신 수량이 재고의 수량을 초과합니다.");
             }
+        }else if(choiceProduct == exitNum){
+
+        }else {
+            System.out.println("상품번호를 다시 입력해주세요");
         }
 
         return choiceProduct;

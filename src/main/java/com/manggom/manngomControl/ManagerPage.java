@@ -339,7 +339,6 @@ public class ManagerPage {
             System.out.println("코드를 변경할 매니저의 번호를 입력하세요. ");
             int managerNo = sc.nextInt();
             System.out.println("변경할 코드를 입력해주세요. ");
-            sc.nextLine();
             String managerCode = sc.nextLine();
             int result = resistDAO.updateManagerCode(con, managerNo, managerCode);
             if(result>0){

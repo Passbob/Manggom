@@ -16,20 +16,20 @@ public class InformationPage {
 
     Scanner sc = new Scanner(System.in);
 
-    public int startInformation(int choiceProductCode, int choiceProductCount, int totalPrice, int restCount) {
+    public int startInformation(int choiceProductCode, int choiceProductCount, int totalPrice, int restCount, int exitNum) {
 
 //        페이지 시작
         int choice = 0;
 
 
         System.out.println("구매를 확정하기 위해서는 고객 정보가 필요합니다.");
-        System.out.println("1. 신규회원, 2. 기존회원, 9. 나가기");
+        System.out.println("1. 신규회원, 2. 기존회원, "+(exitNum+1)+". 나가기");
         choice = sc.nextInt();
         if(choice == 1){
             inputUserInfo(choiceProductCode, choiceProductCount, totalPrice, restCount);
         } else if (choice == 2) {
             rePurchaseUser(choiceProductCode, choiceProductCount, totalPrice, restCount);
-        } else if(choice != 9){
+        } else if(choice != exitNum){
             System.out.println("숫자를 잘못입력했습니다.");
         }
 
