@@ -30,5 +30,6 @@ _____
 ## 데이터 모델링
 
 ![모델링](./images/manggomModeling.png)
+![모델링](./images/manggomModel2.png)
 
 ______

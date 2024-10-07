@@ -28,7 +28,8 @@
         IFNULL(SUM(SALE_PRICE), NULL)
         FROM SALE_INFO
         JOIN PRODUCT USING (PRODUCT_CODE)
-        GROUP BY PRODUCT_CODE;
+        GROUP BY PRODUCT_CODE
+        ORDER BY PRODUCT_CODE;
     </entry>
 
     <entry key="deleteSaleInfo">

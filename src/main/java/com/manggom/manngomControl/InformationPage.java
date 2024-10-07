@@ -128,9 +128,12 @@ public class InformationPage {
                             System.out.println();
                             System.out.println("등록에 성공했습니다.");
                             System.out.println();
+                        }else {
+                            System.out.println("등록에 실패했습니다.");
                         }
+
                 } else {
-                        System.out.println("정보가 없습니다.");
+
                 }
             } else {
                     System.out.println();
