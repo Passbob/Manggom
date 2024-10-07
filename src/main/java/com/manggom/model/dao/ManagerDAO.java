@@ -22,6 +22,8 @@ public class ManagerDAO {
     }
 
     public boolean checkManager(Connection con, String password){
+//        비밀번호 체크
+
         boolean isPass = false;
         Statement stmt = null;
         ResultSet rset = null;
