@@ -8,7 +8,9 @@
          FROM MANAGER
     </entry>
     <entry key="inputManager">
-        INSERT INTO USER_INFO VALUES
+        INSERT INTO MANAGER
+        (MANAGER_NO, MANAGER_CODE)
+        VALUES
         (?, ?);
     </entry>
     <entry key="updateManagerCode">
