@@ -29,7 +29,7 @@ public class InformationPage {
             inputUserInfo(choiceProductCode, choiceProductCount, totalPrice, restCount);
         } else if (choice == 2) {
             rePurchaseUser(choiceProductCode, choiceProductCount, totalPrice, restCount);
-        } else if(choice != exitNum){
+        } else if(choice != exitNum+1){
             System.out.println("숫자를 잘못입력했습니다.");
         }
 
